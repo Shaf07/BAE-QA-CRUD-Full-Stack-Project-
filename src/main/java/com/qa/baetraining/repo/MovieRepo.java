@@ -21,4 +21,7 @@ public interface MovieRepo extends JpaRepository<Movie, Long> {
 	
 	@Query(value = "SELECT * FROM movie WHERE seen = true", nativeQuery = true)
 	public List<Movie> findBySeen(boolean seen);
+	
+	//@Query(value = "SELECT AVG(rating) FROM movie", nativeQuery = true)
+	//public int averageRating();
 } 
