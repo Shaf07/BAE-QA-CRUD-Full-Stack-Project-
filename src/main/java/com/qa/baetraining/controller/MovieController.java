@@ -90,6 +90,10 @@ public class MovieController {
 		return service.findBySeen(seen);
 	}
 		
+	@PutMapping("/updateSeen/{id}")
+		public ResponseEntity<Movie> updateSeen(@PathVariable long id) {
+			return new ResponseEntity<Movie>(service.updateSeen(id), HttpStatus.OK); 
+	}
 	
 	
 	//@DeleteMapping("/removeUnderage")
