@@ -61,6 +61,9 @@ public class MovieService {
 	public List<Movie> findBySeen(boolean seen) {
 		return repo.findBySeen(seen);
 	}
+	public List<Movie> findByUnSeen(boolean seen) {
+		return repo.findByUnSeen(seen);
+	}
 	
 	//public Movie updateSeen(long id) {
 		//Movie seenMovie = repo.findById(id).get();

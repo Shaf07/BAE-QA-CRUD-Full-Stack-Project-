@@ -89,7 +89,10 @@ public class MovieController {
 	public List<Movie> findBySeen(boolean seen){
 		return service.findBySeen(seen);
 	}
-		
+		@GetMapping("/allMovies/Unseen") //need one for true and one for false 
+	public List<Movie> findByUnSeen(boolean seen){
+		return service.findByUnSeen(seen);
+	}
 	@PutMapping("/updateSeen/{id}")
 		public ResponseEntity<Movie> updateSeen(@PathVariable long id) {
 			return new ResponseEntity<Movie>(service.updateSeen(id), HttpStatus.OK); 
