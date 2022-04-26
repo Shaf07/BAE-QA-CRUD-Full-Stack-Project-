@@ -6,7 +6,7 @@ console.log("working")
       method: 'get',
       url: 'http://localhost:8080/allMovies'
     }).then(res => showOutput(res))
-    .catch(err = console.log(error))
+    .catch(err = console.log(err))
   }
   function findMovie(){
     axios({
@@ -18,13 +18,21 @@ console.log("working")
   function addMovie(){
     axios({
       method: 'post',
-      url: 'http://localhost:8080/addMovie'
-    })
+      url: 'http://localhost:8080/addMovie',
+      data:{
+        movieTitle: document.getElementById('movieTitle').value,
+        releaseYear: document.getElementById('releaseYear').value,
+        rating: document.getElementById('rating').value,
+        seen: document.getElementById('seen').value
+      }
+    }).then(res => showOutput(res))
+    .catch(err = console.log(error))
   }
+
   // INTERCEPTING REQUESTS & RESPONSES  // AXIOS INSTANCES  // Show output in browser  function showOutput(res) {
-    function showOutput(res){
+  function showOutput(res){
     document.getElementById('res').innerHTML = `    
-    <div class="card card-body mb-4">   
+    <div class="card card-body mb-4">  s 
        <h5>Status: ${res.status}</h5>   
      </div> 
       <div class="card mt-3">   
@@ -54,4 +62,5 @@ console.log("working")
     }
   document.getElementById('allMovies').addEventListener('click', findAll);
   document.getElementById('findMovie').addEventListener('click', findMovie);
+  document.getElementById('addMovie').addEventListener('click', addMovie);
 

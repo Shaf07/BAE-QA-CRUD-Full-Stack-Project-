@@ -18,7 +18,6 @@
         <h1 class="display-4 text-center mb-3">Movie Shack</h1>
         <button class="btn btn-primary" id="allMovies">My Movies</button>
         <button class="btn btn-primary" id="findMovie">Find a Movie</button>
-        <button class="btn btn-primary" id="addMovie">Add Movies</button>
         <button class="btn btn-primary" id="update">Update Movies</button>
         <button class="btn btn-primary" id="delete">Remove Movies</button>
         <button class="btn btn-primary" id="viewByRating">View by rating</button>
@@ -27,7 +26,7 @@
         
 
       </div>
-      <form method="post" action="index.html">
+      <form id = "addMovieForm" method="post" action="/addMovie">
         <h1>
             Add Movie 
         </h1>
@@ -44,12 +43,13 @@
             <input type="number" id="rating" name="rating" min="1" max = "5">
   
             <br>
-            <input type="radio" id="seen" value="seen" name="seen"><label for="seen">Viewed</label><br>
-            <input type="radio" id="unseen" value="unseen" name="seen"><label for="unseen">Not watched yet</label>
+            <input type="checkbox" id="seen" value="true" name="seen"><label for="seen">Viewed</label><br>
         </fieldset>
-        <button type="submit" class="btn btn-outline-secondary">
-            <b>Submit</b>
-        </button> 
+        <button type="submit" class="btn btn-outline-secondary" id="addMovie">Submit</button> 
+        <button type="submit" class="btn btn-outline-secondary" id="findMovie">Find</button> 
+        <button type="submit" class="btn btn-outline-secondary" id="editMovie">Update</button> 
+        <button type="submit" class="btn btn-outline-secondary" id="changeRating">Update</button> 
+        <button type="submit" class="btn btn-outline-secondary" id="delete">Remove</button>
            
     </form>
       <hr />
