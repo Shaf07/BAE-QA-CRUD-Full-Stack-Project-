@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS user CASCADE;
+DROP TABLE IF EXISTS movie CASCADE;
 
-CREATE TABLE user(
+CREATE TABLE movie(
 	id INT AUTO_INCREMENT,
-	firstname VARCHAR(30) NOT NULL,
-	last_name VARCHAR(30) NOT NULL,
-	username VARCHAR(30) UNIQUE NOT NULL,
-	age INT NOT NULL, 
+	movie_title VARCHAR(50) NOT NULL,
+	release_year INT,
+	rating INT,
+	seen BOOLEAN NOT NULL, 
 	PRIMARY KEY(id)
 );

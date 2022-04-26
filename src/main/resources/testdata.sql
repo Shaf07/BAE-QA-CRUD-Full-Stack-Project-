@@ -1,3 +1,3 @@
-INSERT INTO `user` (`firstname`, `last_name`, `username`, `age`) VALUES ('Dan', 'Daniels', 'Cheese',  65);
+INSERT INTO `movie` (`movie_title`, `release_year`, `rating`, `seen`) VALUES ('Inception', '2010', '5',  true);
 
 

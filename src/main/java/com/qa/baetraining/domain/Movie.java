@@ -18,7 +18,7 @@ public class Movie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "movieTitle", length = 50, nullable = false, unique = true) //this overrides the default name for the column in the database and adds character limit
+	@Column(name = "movieTitle", length = 50, nullable = false) //this overrides the default name for the column in the database and adds character limit
 	private String movieTitle;
 	
 	@Column
