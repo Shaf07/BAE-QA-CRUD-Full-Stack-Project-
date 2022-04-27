@@ -2,6 +2,8 @@ package com.qa.baetraining.controller;
 
 import java.util.List;
 
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -43,16 +45,16 @@ public class MovieController {
 		return new ResponseEntity<List<Movie>>(service.allMovies(), HttpStatus.OK);
 	}
 	
-//	@PostMapping("/addUser")
-	//public User addUser(@RequestBody User user) {
-	//	return service.AddUser(user);
-//	} THIS IS HOW THE PUT REQUEST LOOKS WITHOUT THE RESPONSEENTITY 
 	
-	@PostMapping("/addMovie")
+	@PostMapping(path = "/addMovie")
 	public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
-		return new ResponseEntity<Movie>(service.addMovie(movie), 		HttpStatus.RESET_CONTENT); //can change this to CREATED
+		return new ResponseEntity<Movie>(service.addMovie(movie), 		HttpStatus.RESET_CONTENT); 
 	}
 	
+	//@RequestMapping(value = "/addMovie", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+	//public Movie addMovie(Movie movie) {
+		//return service.addMovie(movie);
+	//}
 	@PutMapping("/updateMovie/{id}")
 	public ResponseEntity<Movie> updateMovie(@PathVariable long id, @RequestBody Movie movie) {
 		return new ResponseEntity<Movie>(service.updateMovie(id, movie), HttpStatus.CREATED); 

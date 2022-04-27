@@ -25,7 +25,7 @@ public class Movie {
 	private int releaseYear;
 	
 	@Column
-	int rating;
+	int rating; //PRIVATE NO NO
 	
 	@Column(nullable = false)
 	private boolean seen;
