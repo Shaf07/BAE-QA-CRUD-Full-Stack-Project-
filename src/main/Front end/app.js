@@ -22,21 +22,18 @@ document.getElementById('addMovieForm').addEventListener('submit', function (eve
 document.getElementById('findMovieForm').addEventListener('submit', function (event) {
   event.preventDefault();
   const form = this;
-  const data = {
-    movieTitle: form.movieTitle.value
-  };
-  axios.get('http://localhost:8080/findMovie/'+movieTitle)
+  axios.get('http://localhost:8080/findMovie/'+form.movieTitle.value)
     .then(res => showOutput(res))
     .catch(err => console.log(err))
 });
 
-document.getElementById('addMovieForm').addEventListener('submit', function updateMovie(event) {
+document.getElementById('updateMovieForm').addEventListener('submit', function (event) {
   event.preventDefault();
   const form = this;
   const data = {
     movieTitle: form.movieTitle.value, releaseYear: form.releaseYear.value, rating: form.rating.value, seen: form.seen.value
   };
-  axios.put('http://localhost:8080/updateMovie' + document.getElementById('id'), data)
+  axios.put('http://localhost:8080/updateMovie/' + document.getElementById('id').value, data)
     .then(response => console.log(response))
     .catch(errors => console.log(errors));
 });
