@@ -8,6 +8,14 @@ function findAll() {
   }).then(res => showOutput(res))
     .catch(err => console.log(err))
 }
+
+function findUnseen() {
+  axios({
+    method: 'get',
+    url: 'http://localhost:8080/allMovies/Unseen'
+  }).then(res => showOutput(res))
+    .catch(err => console.log(err))
+}
 document.getElementById('addMovieForm').addEventListener('submit', function (event) {
   event.preventDefault();
   const form = this;
@@ -22,7 +30,23 @@ document.getElementById('addMovieForm').addEventListener('submit', function (eve
 document.getElementById('findMovieForm').addEventListener('submit', function (event) {
   event.preventDefault();
   const form = this;
-  axios.get('http://localhost:8080/findMovie/'+form.movieTitle.value)
+  axios.get('http://localhost:8080/findMovie/' + form.movieTitle.value)
+    .then(res => showOutput(res))
+    .catch(err => console.log(err))
+});
+
+document.getElementById('viewByRatingForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const form = this;
+  axios.get('http://localhost:8080/findByRating/' + form.rating.value)
+    .then(res => showOutput(res))
+    .catch(err => console.log(err))
+});
+
+document.getElementById('viewByYearForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const form = this;
+  axios.get('http://localhost:8080/findByYear/' + form.releaseYear.value)
     .then(res => showOutput(res))
     .catch(err => console.log(err))
 });
@@ -37,7 +61,13 @@ document.getElementById('updateMovieForm').addEventListener('submit', function (
     .then(response => console.log(response))
     .catch(errors => console.log(errors));
 });
-
+document.getElementById('DeleteForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const form = this;
+  axios.delete('http://localhost:8080/deleteById/' + form.id.value)
+    .then(response => console.log(response))
+    .catch(errors => console.log(errors));
+});
 
 // INTERCEPTING REQUESTS & RESPONSES  // AXIOS INSTANCES  // Show output in browser  function showOutput(res) {
 function showOutput(res) {
@@ -71,5 +101,5 @@ function showOutput(res) {
                  </div>  `;
 }
 document.getElementById('allMovies').addEventListener('click', findAll);
-document.getElementById('findMovie').addEventListener('submit', findMovie);
+document.getElementById('unseenFilms').addEventListener('click', findUnseen);
 
