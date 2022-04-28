@@ -64,18 +64,6 @@ public class MovieService {
 	public List<Movie> findByUnSeen(boolean seen) {
 		return repo.findByUnSeen(seen);
 	}
-	
-	//public Movie updateSeen(long id) {
-		//Movie seenMovie = repo.findById(id).get();
-		//if(seenMovie.isSeen()) {
-			//seenMovie.setSeen(false);
-			//return repo.saveAndFlush(seenMovie);
-		//}
-		//else {
-			//seenMovie.setSeen(true);
-		//	return repo.saveAndFlush(seenMovie);
-	//	}
-//	}
 	public Movie updateSeen(long id) {
 		boolean idExists = repo.existsById(id);
 		Movie seenMovie = repo.findById(id).get();
@@ -93,9 +81,5 @@ public class MovieService {
 			return repo.getById(id);
 		}
 	}
-//	public void removeUnderage() {
-	//	List <Movie> underagers = repo.findUnderage();
-	//	repo.deleteAll(underagers);
-//	}
 }
 

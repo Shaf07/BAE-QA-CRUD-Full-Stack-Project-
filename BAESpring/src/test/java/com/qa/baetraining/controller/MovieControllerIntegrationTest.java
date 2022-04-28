@@ -1,5 +1,6 @@
 package com.qa.baetraining.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -37,6 +38,47 @@ public class MovieControllerIntegrationTest {
 	@Autowired
 	private ObjectMapper mapper;
 	
+	@Test
+	public void getByIdTest() throws Exception {
+		Movie movieResult = new Movie(1L, "Inception", 2010, 5, true);
+		String movieResultAsJSON = mapper.writeValueAsString(movieResult);
+
+		mvc.perform(get("/getById/1").contentType(MediaType.APPLICATION_JSON).content(movieResultAsJSON))
+				.andExpect(status().isOk()).andExpect(content().json(movieResultAsJSON));
+	}
+	
+	@Test
+	public void getByMovieTitleTest() throws Exception {
+		Movie movieResult = new Movie(1L, "Inception", 2010, 5, true);
+		String movieResultAsJSON = mapper.writeValueAsString(movieResult);
+
+		mvc.perform(get("/findMovie/Inception").contentType(MediaType.APPLICATION_JSON).content(movieResultAsJSON))
+				.andExpect(status().isOk()).andExpect(content().json(movieResultAsJSON));
+	}
+	
+	@Test
+	public void getByRatingTest() throws Exception {
+		Movie title = new Movie(1L, "Inception", 2010, 5, true);
+		List<Movie> output = new ArrayList<>();
+		output.add(title);
+		String outputAsJSON = mapper.writeValueAsString(output);
+
+		mvc.perform(get("/findByRating/5").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(status().isOk()).andExpect(content().json(outputAsJSON));
+	}
+	
+	@Test
+	public void getByYearTest() throws Exception {
+		Movie title = new Movie(1L, "Inception", 2010, 5, true);
+		List<Movie> output = new ArrayList<>();
+		output.add(title);
+		String outputAsJSON = mapper.writeValueAsString(output);
+
+		mvc.perform(get("/findByYear/2010").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(status().isOk()).andExpect(content().json(outputAsJSON));
+	}
+	
+
 	@Test
 	public void getAllTest() throws Exception {
 		Movie movie = new Movie(1L, "Inception", 2010, 5, true);
@@ -78,21 +120,14 @@ public class MovieControllerIntegrationTest {
 				.content(updatedAsJSON))
 		.andExpect(status().isCreated())
 		.andExpect(content().json(resultAsJSON));
+
 	}
-//	@Test
-	//public void deleteTest() throws Exception {
-		//Movie deleted = new Movie("Jimmmy update", 2009, 3, true);
-		//String updatedAsJSON = mapper.writeValueAsString(deleted);
-		
-	//	User updateResult = new User(1L, "Jimmy", "updated", "ddd", 5);
-		//String resultAsJSON = mapper.writeValueAsString(updateResult);
-		
-	//	mvc.perform(put("/updateUser/1")
-				//.contentType(MediaType.APPLICATION_JSON)
-				//.content(updatedAsJSON))
-		//.andExpect(status().isCreated())
-		//.andExpect(content().json(resultAsJSON));
-	//}
+	
+	@Test
+	public void removeMovieTest() throws Exception {
+		mvc.perform(delete("/deleteById/1").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+	}
 
 }
 
