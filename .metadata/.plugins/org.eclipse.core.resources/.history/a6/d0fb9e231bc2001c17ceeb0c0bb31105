@@ -1,0 +1,87 @@
+package com.qa.baetraining.controller;
+
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import com.qa.baetraining.domain.User;
+import com.qa.baetraining.service.UserService;
+
+@RestController
+public class UserController {
+	
+	public UserService service;
+	
+	public UserController(UserService service) {
+		this.service = service;
+	}
+
+	@GetMapping("/getById/{id}")
+	public ResponseEntity<User> getById(@PathVariable long id) {
+		return new ResponseEntity<User>(service.getById(id), HttpStatus.OK);
+	}
+	
+	@GetMapping("/findUsername/{username}")
+	public ResponseEntity<User> findUsername(@PathVariable String username) {
+		return new ResponseEntity<User>(service.findUsername(username), HttpStatus.OK);
+	}
+	
+	@GetMapping("/allUsers")
+	public ResponseEntity<List<User>> allUsers() {
+		return new ResponseEntity<List<User>>(service.allUsers(), HttpStatus.OK);
+	}
+	
+//	@PostMapping("/addUser")
+	//public User addUser(@RequestBody User user) {
+	//	return service.AddUser(user);
+//	} THIS IS HOW THE PUT REQUEST LOOKS WITHOUT THE RESPONSEENTITY 
+	
+	@PostMapping("/addUser")
+	public ResponseEntity<User> addUser(@RequestBody User user) {
+		return new ResponseEntity<User>(service.AddUser(user), 		HttpStatus.RESET_CONTENT); //can change this to CREATED
+	}
+	
+	@PutMapping("/updateUser/{id}")
+	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User user) {
+		return new ResponseEntity<User>(service.updateUser(id, user), HttpStatus.CREATED); 
+	}
+	
+	//@DeleteMapping("/deleteById/{id}")
+	//public ResponseEntity<Boolean> deleteById(@PathVariable long id) {
+	//	return new ResponseEntity<Boolean>(service.deleteById(id), //HttpStatus.OK);
+//	}
+	
+	
+	@DeleteMapping("/deleteById/{id}")
+	public ResponseEntity<?> deleteById(@PathVariable long id) { //question mark means it can be anything; ResponseEntity is a generic so it has to take in some sort of parameter 
+		return (service.deleteById(id))? new ResponseEntity<>(HttpStatus.OK) :
+		new ResponseEntity<>(service.deleteById(id), HttpStatus.INTERNAL_SERVER_ERROR); //GIVES TWO POSSIBLE RESPONSE CODES
+	}
+	
+	
+	@GetMapping("/findUnderage")
+	public List<User> findUnderage(){
+		return service.findUnderage();
+	}
+	
+	@DeleteMapping("/removeUnderage")
+	public void removeUnderage() {
+	this.service.removeUnderage();
+}
+
+}
+
+
+
+
+
+
+
+
