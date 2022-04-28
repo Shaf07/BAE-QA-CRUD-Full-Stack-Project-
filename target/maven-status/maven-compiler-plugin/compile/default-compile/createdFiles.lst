@@ -1,0 +1,6 @@
+com\qa\baetraining\controller\UserController.class
+com\qa\baetraining\domain\User.class
+com\qa\baetraining\repo\UserRepo.class
+com\qa\baetraining\BaeSpringApplication.class
+com\qa\baetraining\exceptions\UserNotFound.class
+com\qa\baetraining\service\UserService.class
