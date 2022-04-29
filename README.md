@@ -1,0 +1,10 @@
+# BAE-QA-CRUD-Full-Stack-Project-
+This project utilizes an existing MySQL database. Configure database settings in ‘application properties’ to connect to your database. This application will generate the tables needed for you. 
+ Otherwise, you can create a database within the MySQL workbench on port localhost:8080 with the database name ‘baeproject’ and then run straight from the jar file without changing the project. The username and password should both be ‘root’. 
+ 
+After running the application, it will connect to your local database. From there, you can run the HTML file located in the ‘Front end’ folder. This will provide you with the Movie Shack user interface within whichever browser you choose. To view all movies, simply click ‘Movie List’. This list will be empty as no data currently exists in the database. Use forms on this site to interact with the database by adding, updating, deleting and sorting. Features that request output will display the data at the bottom of the page. These outputs are not interactive as they are presented in raw JSON format. 
+ 
+To test that changes are being persisted to the database, you can click back on the movie list button after the change has been submitted. When you close the browser and reopen the HTML file, all changes should still be there as they will exist within the database. If changes are no longer there, you can check whether it is an issue with the front end by using Postman as a substitute. The API endpoints are listed in the documentation folder.  
+If the issue persists within Postman, utilise the test classes within the project files (src/test/java). To do this, right click on the folder and select ‘Run as’>’JUnit test’. If any changes have been made to the project, you must re-compile into a jar file with dependencies. This is the file that runs the application.  
+ 
+Important: ensure that your MySQL server is running. If the server will not run, go into the services app (type services into start on Windows) and search for MySQL. Click start and the server should be up and running again.  
