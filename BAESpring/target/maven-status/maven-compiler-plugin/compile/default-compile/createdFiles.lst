@@ -1,5 +1,4 @@
 com\qa\baetraining\repo\MovieRepo.class
-com\qa\baetraining\exceptions\MovieNotFound.class
 com\qa\baetraining\service\MovieService.class
 com\qa\baetraining\controller\MovieController.class
 com\qa\baetraining\domain\Movie.class
